@@ -9,14 +9,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg-1:#090d16;
-    --bg-2:#0f172a;
-    --card:#111a2e;
-    --border:#1e293f;
-    --accent:#38bdf8;
-    --accent-2:#818cf8;
-    --text:#e8edf6;
-    --text-dim:#8b96ad;
+    --bg-1:#0a0908;
+    --bg-2:#171310;
+    --card:#1c1613;
+    --border:#332721;
+    --accent:#ff7a3d;
+    --accent-2:#ff3d3d;
+    --text:#f3ece6;
+    --text-dim:#a99a8f;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html, body{
@@ -25,10 +25,14 @@
   }
   body{
     background:
-      radial-gradient(ellipse 900px 500px at 8% -5%, rgba(56,189,248,0.16), transparent 55%),
-      radial-gradient(ellipse 800px 600px at 100% 10%, rgba(129,140,248,0.14), transparent 55%),
-      radial-gradient(ellipse 700px 500px at 50% 115%, rgba(56,189,248,0.10), transparent 60%),
-      linear-gradient(160deg, var(--bg-2) 0%, var(--bg-1) 100%);
+      radial-gradient(ellipse 900px 500px at 8% -5%, rgba(255,122,61,0.18), transparent 55%),
+      radial-gradient(ellipse 800px 600px at 100% 10%, rgba(255,61,61,0.14), transparent 55%),
+      radial-gradient(ellipse 700px 500px at 50% 115%, rgba(255,122,61,0.12), transparent 60%),
+      linear-gradient(160deg, rgba(15,11,9,0.88) 0%, rgba(8,6,5,0.94) 100%),
+      url('imagens/motherboard-circuit-background.jpg');
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
     color:var(--text);
     font-family:'Inter',sans-serif;
     height:100vh;
@@ -47,19 +51,19 @@
     flex-shrink:0;
   }
   .avatar{
-    width:64px; height:64px;
+    width:104px; height:104px;
     border-radius:50%;
     margin:0 auto 10px;
     overflow:hidden;
-    border:2px solid rgba(56,189,248,0.5);
-    box-shadow:0 0 24px rgba(56,189,248,0.25);
+    border:3px solid rgba(255,122,61,0.6);
+    box-shadow:0 0 32px rgba(255,122,61,0.35);
   }
   .avatar img{width:100%; height:100%; object-fit:cover; display:block;}
   h1{
     font-size:clamp(1.25rem,2.6vh,1.7rem);
     font-weight:800;
     letter-spacing:-0.02em;
-    background:linear-gradient(90deg,#ffffff,#c7d6f0);
+    background:linear-gradient(90deg,#ffffff,#ffd6b8);
     -webkit-background-clip:text;
     background-clip:text;
     color:transparent;
@@ -112,7 +116,7 @@
   .nav-btn:hover{
     color:var(--accent);
     border-color:var(--accent);
-    background:rgba(56,189,248,0.08);
+    background:rgba(255,122,61,0.1);
     transform:scale(1.08);
   }
   .stage{
@@ -185,8 +189,8 @@
     font-size:0.62rem;
     padding:3px 9px;
     border-radius:999px;
-    background:rgba(56,189,248,0.09);
-    border:1px solid rgba(56,189,248,0.3);
+    background:rgba(255,122,61,0.1);
+    border:1px solid rgba(255,122,61,0.35);
     color:var(--accent);
   }
 
@@ -208,7 +212,7 @@
     background:var(--accent);
     width:20px;
     border-radius:4px;
-    box-shadow:0 0 10px rgba(56,189,248,0.6);
+    box-shadow:0 0 10px rgba(255,122,61,0.6);
   }
 
   /* FOOTER */
@@ -239,7 +243,7 @@
     transform:scale(1.18) translateY(-3px);
     border-color:var(--accent);
     background:linear-gradient(135deg, var(--accent), var(--accent-2));
-    box-shadow:0 8px 20px -6px rgba(56,189,248,0.5);
+    box-shadow:0 8px 20px -6px rgba(255,122,61,0.5);
   }
   .copyright{
     font-size:0.62rem;
