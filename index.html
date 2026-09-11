@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Augusto Oliveira | Infraestrutura de TI</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0e0d;
+    --bg-card:#111815;
+    --border:#1f2b26;
+    --accent:#39ff8f;
+    --accent-dim:#1e7a4c;
+    --text:#e6efe9;
+    --text-dim:#8fa39a;
+  }
+  *{box-sizing:border-box}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    background-image:
+      radial-gradient(circle at 20% 0%, rgba(57,255,143,0.06), transparent 40%),
+      radial-gradient(circle at 80% 20%, rgba(57,255,143,0.04), transparent 35%);
+  }
+  .mono{font-family:'JetBrains Mono',monospace}
+  .card{
+    background:var(--bg-card);
+    border:1px solid var(--border);
+    transition:all .25s ease;
+  }
+  .card:hover{
+    border-color:var(--accent-dim);
+    transform:translateY(-4px);
+    box-shadow:0 10px 30px -10px rgba(57,255,143,0.15);
+  }
+  .tag{
+    background:rgba(57,255,143,0.08);
+    border:1px solid rgba(57,255,143,0.25);
+    color:var(--accent);
+  }
+  .img-slot{
+    background:
+      linear-gradient(135deg, rgba(57,255,143,0.03) 25%, transparent 25%) -10px 0,
+      linear-gradient(225deg, rgba(57,255,143,0.03) 25%, transparent 25%) -10px 0,
+      linear-gradient(315deg, rgba(57,255,143,0.03) 25%, transparent 25%),
+      linear-gradient(45deg, rgba(57,255,143,0.03) 25%, transparent 25%);
+    background-size:20px 20px;
+    background-color:#0d1310;
+  }
+  .glow-text{text-shadow:0 0 20px rgba(57,255,143,0.35)}
+  .btn{
+    transition:all .2s ease;
+  }
+  .btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px -8px rgba(57,255,143,0.4);
+  }
+  ::selection{background:var(--accent);color:#0a0e0d}
+</style>
+</head>
+<body class="min-h-screen">
+
+  <!-- HEADER -->
+  <header class="max-w-3xl mx-auto px-6 pt-16 pb-10 text-center">
+    <div class="inline-block mb-5">
+      <div class="w-24 h-24 rounded-full border-2 border-[var(--accent)] mx-auto flex items-center justify-center bg-[var(--bg-card)] mono text-2xl font-bold text-[var(--accent)] glow-text">
+        AO
+        <!-- Substitua por: <img src="SEU_LINK_DE_FOTO" class="w-full h-full rounded-full object-cover" /> -->
+      </div>
+    </div>
+    <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight glow-text">Augusto Oliveira</h1>
+    <p class="mono text-[var(--accent)] mt-2 text-sm md:text-base">
+      &gt; Técnico em Redes | Suporte N1/N2 | Infraestrutura de TI
+    </p>
+    <p class="text-[var(--text-dim)] text-xs md:text-sm mono mt-1">CRU · SESPA · SAMU</p>
+    <p class="text-[var(--text-dim)] max-w-xl mx-auto mt-5 text-sm md:text-base leading-relaxed">
+      Administração de servidores Linux/Windows, monitoramento de infraestrutura crítica
+      (Zabbix/Grafana) e suporte técnico N1/N2 para o setor público de saúde.
+      Em evolução com automação (N8N, Python) e Inteligência Artificial aplicada à TI.
+    </p>
+  </header>
+
+  <!-- PROJETOS -->
+  <main class="max-w-5xl mx-auto px-6 pb-20">
+    <h2 class="mono text-[var(--accent)] text-sm mb-6 tracking-widest">// PROJETOS</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+      <!-- Projeto 1 -->
+      <div class="card rounded-xl overflow-hidden flex flex-col">
+        <div class="img-slot h-44 relative overflow-hidden p-3">
+          <svg viewBox="0 0 300 150" class="w-full h-full">
+            <rect x="0" y="0" width="300" height="150" fill="#0d1310"/>
+            <text x="8" y="16" class="mono" font-size="8" fill="#39ff8f" opacity="0.7">ZABBIX · GRAFANA</text>
+            <polyline points="10,110 40,95 60,105 90,70 120,90 150,50 180,75 210,40 240,60 270,30 290,45" fill="none" stroke="#39ff8f" stroke-width="2" opacity="0.9"/>
+            <polyline points="10,130 40,120 60,125 90,110 120,118 150,100 180,112 210,95 240,105 270,90 290,98" fill="none" stroke="#1e7a4c" stroke-width="1.5" opacity="0.7"/>
+            <circle cx="270" cy="30" r="3" fill="#39ff8f"/>
+            <rect x="10" y="10" width="6" height="6" fill="#39ff8f" opacity="0.6"/>
+            <rect x="200" y="15" width="50" height="14" rx="2" fill="#39ff8f" opacity="0.12" stroke="#39ff8f" stroke-width="0.5"/>
+            <text x="205" y="25" class="mono" font-size="7" fill="#39ff8f">UP 99.9%</text>
+          </svg>
+        </div>
+        <div class="p-5 flex flex-col flex-1">
+          <h3 class="font-bold text-lg mb-2">Monitoramento Crítico</h3>
+          <p class="text-[var(--text-dim)] text-sm leading-relaxed mb-4 flex-1">
+            Implantação e gestão de monitoramento de servidores, redes e serviços críticos
+            em tempo real, com alertas proativos e dashboards de disponibilidade.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="tag mono text-xs px-2 py-1 rounded">Zabbix</span>
+            <span class="tag mono text-xs px-2 py-1 rounded">Grafana</span>
+            <span class="tag mono text-xs px-2 py-1 rounded">Monitoramento</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Projeto 2 -->
+      <div class="card rounded-xl overflow-hidden flex flex-col">
+        <div class="img-slot h-44 relative overflow-hidden p-3">
+          <svg viewBox="0 0 300 150" class="w-full h-full">
+            <rect x="0" y="0" width="300" height="150" fill="#0d1310"/>
+            <text x="8" y="16" class="mono" font-size="8" fill="#39ff8f" opacity="0.7">TRACCAR · GPS</text>
+            <g opacity="0.25" stroke="#39ff8f" stroke-width="0.5">
+              <path d="M0,30 L300,30 M0,60 L300,60 M0,90 L300,90 M0,120 L300,120"/>
+              <path d="M50,0 L50,150 M100,0 L100,150 M150,0 L150,150 M200,0 L200,150 M250,0 L250,150"/>
+            </g>
+            <path d="M40,120 Q90,60 150,80 T260,40" fill="none" stroke="#39ff8f" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/>
+            <circle cx="40" cy="120" r="5" fill="#1e7a4c"/>
+            <circle cx="150" cy="80" r="5" fill="#39ff8f" opacity="0.6"/>
+            <circle cx="260" cy="40" r="6" fill="#39ff8f"/>
+            <circle cx="260" cy="40" r="10" fill="none" stroke="#39ff8f" stroke-width="1" opacity="0.5"/>
+            <text x="265" y="38" class="mono" font-size="6" fill="#e6efe9">UNID-07</text>
+          </svg>
+        </div>
+        <div class="p-5 flex flex-col flex-1">
+          <h3 class="font-bold text-lg mb-2">Rastreamento e Frota</h3>
+          <p class="text-[var(--text-dim)] text-sm leading-relaxed mb-4 flex-1">
+            Gestão da plataforma de rastreamento veicular da frota do SAMU, garantindo
+            localização em tempo real e suporte às equipes de emergência.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="tag mono text-xs px-2 py-1 rounded">Traccar</span>
+            <span class="tag mono text-xs px-2 py-1 rounded">GPS</span>
+            <span class="tag mono text-xs px-2 py-1 rounded">SAMU</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Projeto 3 -->
+      <div class="card rounded-xl overflow-hidden flex flex-col">
+        <div class="img-slot h-44 relative overflow-hidden p-3">
+          <svg viewBox="0 0 300 150" class="w-full h-full">
+            <rect x="0" y="0" width="300" height="150" fill="#0d1310"/>
+            <text x="8" y="16" class="mono" font-size="8" fill="#39ff8f" opacity="0.7">e-SUS SAMU · TFD</text>
+            <rect x="15" y="30" width="270" height="18" rx="3" fill="#111815" stroke="#1f2b26"/>
+            <rect x="15" y="30" width="270" height="18" rx="3" fill="#39ff8f" opacity="0.06"/>
+            <circle cx="27" cy="39" r="4" fill="#39ff8f"/>
+            <rect x="15" y="55" width="270" height="18" rx="3" fill="#111815" stroke="#1f2b26"/>
+            <circle cx="27" cy="64" r="4" fill="#39ff8f" opacity="0.5"/>
+            <rect x="15" y="80" width="270" height="18" rx="3" fill="#111815" stroke="#1f2b26"/>
+            <circle cx="27" cy="89" r="4" fill="#8fa39a"/>
+            <path d="M120 33 l4 4 8 -8" stroke="#39ff8f" stroke-width="2" fill="none" transform="translate(0,0)"/>
+            <text x="45" y="43" class="mono" font-size="6.5" fill="#e6efe9">Regulação médica ativa</text>
+            <text x="45" y="68" class="mono" font-size="6.5" fill="#8fa39a">Encaminhamento TFD #4821</text>
+            <text x="45" y="93" class="mono" font-size="6.5" fill="#8fa39a">Ficha paciente sincronizada</text>
+          </svg>
+        </div>
+        <div class="p-5 flex flex-col flex-1">
+          <h3 class="font-bold text-lg mb-2">Ecossistema de Saúde</h3>
+          <p class="text-[var(--text-dim)] text-sm leading-relaxed mb-4 flex-1">
+            Suporte técnico e administração dos sistemas e-SUS SAMU e do Sistema de
+            Tratamento Fora de Domicílio (TFD), assegurando continuidade do atendimento.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="tag mono text-xs px-2 py-1 rounded">e-SUS</span>
+            <span class="tag mono text-xs px-2 py-1 rounded">TFD</span>
+            <span class="tag mono text-xs px-2 py-1 rounded">Saúde Pública</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Projeto 4 -->
+      <div class="card rounded-xl overflow-hidden flex flex-col">
+        <div class="img-slot h-44 relative overflow-hidden p-3">
+          <svg viewBox="0 0 300 150" class="w-full h-full">
+            <rect x="0" y="0" width="300" height="150" fill="#0d1310"/>
+            <text x="8" y="16" class="mono" font-size="8" fill="#39ff8f" opacity="0.7">TRUENAS · GLPI · REDES</text>
+            <g stroke="#1f2b26" stroke-width="1">
+              <rect x="20" y="30" width="260" height="16" rx="2" fill="#111815"/>
+              <rect x="20" y="52" width="260" height="16" rx="2" fill="#111815"/>
+              <rect x="20" y="74" width="260" height="16" rx="2" fill="#111815"/>
+            </g>
+            <circle cx="32" cy="38" r="3" fill="#39ff8f"/>
+            <circle cx="32" cy="60" r="3" fill="#39ff8f"/>
+            <circle cx="32" cy="82" r="3" fill="#39ff8f" opacity="0.4"/>
+            <rect x="230" y="32" width="40" height="12" rx="2" fill="#39ff8f" opacity="0.1" stroke="#39ff8f" stroke-width="0.5"/>
+            <text x="236" y="41" class="mono" font-size="6" fill="#39ff8f">ONLINE</text>
+            <line x1="150" y1="98" x2="150" y2="112" stroke="#1f2b26"/>
+            <line x1="80" y1="112" x2="220" y2="112" stroke="#1f2b26"/>
+            <circle cx="80" cy="122" r="6" fill="none" stroke="#39ff8f" stroke-width="1"/>
+            <circle cx="150" cy="122" r="6" fill="none" stroke="#39ff8f" stroke-width="1"/>
+            <circle cx="220" cy="122" r="6" fill="none" stroke="#39ff8f" stroke-width="1"/>
+            <line x1="80" y1="118" x2="80" y2="112" stroke="#1f2b26"/>
+            <line x1="220" y1="118" x2="220" y2="112" stroke="#1f2b26"/>
+          </svg>
+        </div>
+        <div class="p-5 flex flex-col flex-1">
+          <h3 class="font-bold text-lg mb-2">Infraestrutura &amp; Redes</h3>
+          <p class="text-[var(--text-dim)] text-sm leading-relaxed mb-4 flex-1">
+            Administração de storage e backups em TrueNAS, gestão de chamados via GLPI
+            e configuração de redes corporativas na SESPA e SAMU.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="tag mono text-xs px-2 py-1 rounded">TrueNAS</span>
+            <span class="tag mono text-xs px-2 py-1 rounded">GLPI</span>
+            <span class="tag mono text-xs px-2 py-1 rounded">Redes</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Projeto 5 -->
+      <div class="card rounded-xl overflow-hidden flex flex-col md:col-span-2">
+        <div class="img-slot h-44 relative overflow-hidden p-3">
+          <svg viewBox="0 0 600 150" class="w-full h-full">
+            <rect x="0" y="0" width="600" height="150" fill="#0d1310"/>
+            <text x="10" y="18" class="mono" font-size="9" fill="#39ff8f" opacity="0.7">INTRANET CRU · AUTOMAÇÃO N8N/PYTHON</text>
+            <g stroke="#39ff8f" stroke-width="1" fill="none" opacity="0.8">
+              <rect x="30" y="45" width="70" height="30" rx="4"/>
+              <rect x="160" y="45" width="70" height="30" rx="4"/>
+              <rect x="290" y="45" width="70" height="30" rx="4"/>
+              <rect x="420" y="45" width="70" height="30" rx="4"/>
+              <line x1="100" y1="60" x2="160" y2="60" stroke-dasharray="3,2"/>
+              <line x1="230" y1="60" x2="290" y2="60" stroke-dasharray="3,2"/>
+              <line x1="360" y1="60" x2="420" y2="60" stroke-dasharray="3,2"/>
+            </g>
+            <circle cx="100" cy="60" r="2.5" fill="#39ff8f"/>
+            <circle cx="230" cy="60" r="2.5" fill="#39ff8f"/>
+            <circle cx="360" cy="60" r="2.5" fill="#39ff8f"/>
+            <text x="65" y="63" text-anchor="middle" class="mono" font-size="7" fill="#e6efe9">Entrada</text>
+            <text x="195" y="63" text-anchor="middle" class="mono" font-size="7" fill="#e6efe9">Processo</text>
+            <text x="325" y="63" text-anchor="middle" class="mono" font-size="7" fill="#e6efe9">Validação</text>
+            <text x="455" y="63" text-anchor="middle" class="mono" font-size="7" fill="#e6efe9">Financeiro</text>
+            <rect x="30" y="95" width="460" height="10" rx="5" fill="#111815" stroke="#1f2b26"/>
+            <rect x="30" y="95" width="330" height="10" rx="5" fill="#39ff8f" opacity="0.5"/>
+            <text x="500" y="103" class="mono" font-size="7" fill="#39ff8f">72%</text>
+          </svg>
+        </div>
+        <div class="p-5 flex flex-col flex-1">
+          <h3 class="font-bold text-lg mb-2">Sistemas &amp; Automação</h3>
+          <p class="text-[var(--text-dim)] text-sm leading-relaxed mb-4 flex-1">
+            Desenvolvimento e manutenção da intranet do CRU e de sistema de gestão
+            financeira para A&amp;A, automatizando processos internos e reduzindo trabalho manual.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="tag mono text-xs px-2 py-1 rounded">Intranet</span>
+            <span class="tag mono text-xs px-2 py-1 rounded">Automação</span>
+            <span class="tag mono text-xs px-2 py-1 rounded">Gestão Financeira</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="max-w-3xl mx-auto px-6 pb-16 text-center">
+    <h2 class="mono text-[var(--accent)] text-sm mb-6 tracking-widest">// CONTATO</h2>
+    <div class="flex flex-wrap justify-center gap-4 mb-8">
+      <a href="https://wa.me/5593984321003" target="_blank" rel="noopener"
+         class="btn mono text-sm px-5 py-3 rounded-lg border border-[var(--border)] bg-[var(--bg-card)] hover:border-[var(--accent)] text-[var(--text)]">
+        WhatsApp
+      </a>
+      <a href="https://www.linkedin.com/in/augustoficial/" target="_blank" rel="noopener"
+         class="btn mono text-sm px-5 py-3 rounded-lg border border-[var(--border)] bg-[var(--bg-card)] hover:border-[var(--accent)] text-[var(--text)]">
+        LinkedIn
+      </a>
+      <a href="mailto:augusto.corporativo@live.com"
+         class="btn mono text-sm px-5 py-3 rounded-lg border border-[var(--border)] bg-[var(--bg-card)] hover:border-[var(--accent)] text-[var(--text)]">
+        E-mail
+      </a>
+      <a href="https://github.com/augustostm" target="_blank" rel="noopener"
+         class="btn mono text-sm px-5 py-3 rounded-lg border border-[var(--border)] bg-[var(--bg-card)] hover:border-[var(--accent)] text-[var(--text)]">
+        GitHub
+      </a>
+    </div>
+    <p class="text-[var(--text-dim)] text-xs mono">
+      Augusto Oliveira © 2026 — Infraestrutura de TI &amp; Redes
+    </p>
+  </footer>
+
+</body>
+</html>
