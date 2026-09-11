@@ -47,20 +47,27 @@
 
   /* HEADER */
   header{
-    text-align:center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:clamp(14px,3vw,28px);
+    text-align:left;
     flex-shrink:0;
+    max-width:720px;
   }
   .avatar{
-    width:104px; height:104px;
+    width:clamp(96px,14vh,150px);
+    height:clamp(96px,14vh,150px);
     border-radius:50%;
-    margin:0 auto 10px;
     overflow:hidden;
+    flex-shrink:0;
     border:3px solid rgba(255,122,61,0.6);
     box-shadow:0 0 32px rgba(255,122,61,0.35);
   }
   .avatar img{width:100%; height:100%; object-fit:cover; display:block;}
+  .header-text{min-width:0;}
   h1{
-    font-size:clamp(1.25rem,2.6vh,1.7rem);
+    font-size:clamp(1.3rem,2.8vh,1.8rem);
     font-weight:800;
     letter-spacing:-0.02em;
     background:linear-gradient(90deg,#ffffff,#ffd6b8);
@@ -82,8 +89,8 @@
     margin-top:3px;
   }
   .bio{
-    max-width:560px;
-    margin:8px auto 0;
+    max-width:520px;
+    margin-top:8px;
     font-size:clamp(0.68rem,1.4vh,0.82rem);
     color:var(--text-dim);
     line-height:1.5;
@@ -255,6 +262,13 @@
   @media (max-height: 700px){
     .bio{display:none;}
   }
+  @media (max-width: 520px){
+    header{
+      flex-direction:column;
+      text-align:center;
+    }
+    .avatar{width:84px; height:84px;}
+  }
 </style>
 </head>
 <body>
@@ -263,13 +277,15 @@
     <div class="avatar">
       <img src="imagens/perfil.jpeg" alt="Augusto Oliveira" />
     </div>
-    <h1>Augusto Oliveira</h1>
-    <p class="role">Técnico em Redes · Suporte N1/N2 · Infraestrutura de TI</p>
-    <p class="org">CRU &middot; SESPA &middot; SAMU</p>
-    <p class="bio">
-      Administração de servidores Linux/Windows, monitoramento de infraestrutura crítica (Zabbix/Grafana)
-      e automação (N8N, Python) aplicada ao setor público de saúde.
-    </p>
+    <div class="header-text">
+      <h1>Augusto Oliveira</h1>
+      <p class="role">Técnico em Redes · Suporte N1/N2 · Infraestrutura de TI</p>
+      <p class="org">CRU &middot; SESPA &middot; SAMU</p>
+      <p class="bio">
+        Administração de servidores Linux/Windows, monitoramento de infraestrutura crítica (Zabbix/Grafana)
+        e automação (N8N, Python) aplicada ao setor público de saúde.
+      </p>
+    </div>
   </header>
 
   <div class="carousel-wrap">
