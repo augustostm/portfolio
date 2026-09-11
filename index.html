@@ -4,270 +4,388 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Augusto Oliveira | Infraestrutura de TI</title>
-<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0a0e0d;
-    --bg-card:#111815;
-    --border:#1f2b26;
-    --accent:#39ff8f;
-    --accent-dim:#1e7a4c;
-    --text:#e6efe9;
-    --text-dim:#8fa39a;
+    --bg-1:#090d16;
+    --bg-2:#0f172a;
+    --card:#111a2e;
+    --border:#1e293f;
+    --accent:#38bdf8;
+    --accent-2:#818cf8;
+    --text:#e8edf6;
+    --text-dim:#8b96ad;
   }
-  *{box-sizing:border-box}
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html, body{
+    height:100%;
+    overflow:hidden;
+  }
   body{
-    background:var(--bg);
+    background:
+      radial-gradient(ellipse 900px 500px at 8% -5%, rgba(56,189,248,0.16), transparent 55%),
+      radial-gradient(ellipse 800px 600px at 100% 10%, rgba(129,140,248,0.14), transparent 55%),
+      radial-gradient(ellipse 700px 500px at 50% 115%, rgba(56,189,248,0.10), transparent 60%),
+      linear-gradient(160deg, var(--bg-2) 0%, var(--bg-1) 100%);
     color:var(--text);
     font-family:'Inter',sans-serif;
-    background-image:
-      radial-gradient(circle at 20% 0%, rgba(57,255,143,0.06), transparent 40%),
-      radial-gradient(circle at 80% 20%, rgba(57,255,143,0.04), transparent 35%);
+    height:100vh;
+    width:100vw;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:space-between;
+    padding:clamp(14px,3vh,28px) clamp(16px,4vw,40px);
   }
   .mono{font-family:'JetBrains Mono',monospace}
-  .card{
-    background:var(--bg-card);
-    border:1px solid var(--border);
-    transition:all .25s ease;
+
+  /* HEADER */
+  header{
+    text-align:center;
+    flex-shrink:0;
   }
-  .card:hover{
-    border-color:var(--accent-dim);
-    transform:translateY(-4px);
-    box-shadow:0 10px 30px -10px rgba(57,255,143,0.15);
+  .avatar{
+    width:64px; height:64px;
+    border-radius:50%;
+    margin:0 auto 10px;
+    overflow:hidden;
+    border:2px solid rgba(56,189,248,0.5);
+    box-shadow:0 0 24px rgba(56,189,248,0.25);
+  }
+  .avatar img{width:100%; height:100%; object-fit:cover; display:block;}
+  h1{
+    font-size:clamp(1.25rem,2.6vh,1.7rem);
+    font-weight:800;
+    letter-spacing:-0.02em;
+    background:linear-gradient(90deg,#ffffff,#c7d6f0);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .role{
+    font-family:'JetBrains Mono',monospace;
+    font-size:clamp(0.68rem,1.5vh,0.85rem);
+    color:var(--accent);
+    margin-top:4px;
+    font-weight:500;
+  }
+  .org{
+    font-size:clamp(0.6rem,1.2vh,0.72rem);
+    color:var(--text-dim);
+    letter-spacing:0.08em;
+    margin-top:3px;
+  }
+  .bio{
+    max-width:560px;
+    margin:8px auto 0;
+    font-size:clamp(0.68rem,1.4vh,0.82rem);
+    color:var(--text-dim);
+    line-height:1.5;
+  }
+
+  /* CAROUSEL */
+  .carousel-wrap{
+    flex:1;
+    width:100%;
+    max-width:760px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    min-height:0;
+    margin:8px 0;
+  }
+  .nav-btn{
+    flex-shrink:0;
+    width:36px; height:36px;
+    border-radius:50%;
+    border:1px solid var(--border);
+    background:rgba(255,255,255,0.03);
+    color:var(--text-dim);
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer;
+    transition:all .2s ease;
+    font-size:0.85rem;
+  }
+  .nav-btn:hover{
+    color:var(--accent);
+    border-color:var(--accent);
+    background:rgba(56,189,248,0.08);
+    transform:scale(1.08);
+  }
+  .stage{
+    position:relative;
+    width:100%;
+    height:100%;
+    max-height:min(48vh, 420px);
+    border-radius:18px;
+    overflow:hidden;
+  }
+  .slide{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:18px;
+    overflow:hidden;
+    opacity:0;
+    transform:translateX(24px) scale(0.98);
+    transition:opacity .55s ease, transform .55s ease;
+    pointer-events:none;
+    box-shadow:0 20px 60px -20px rgba(0,0,0,0.5);
+  }
+  .slide.active{
+    opacity:1;
+    transform:translateX(0) scale(1);
+    pointer-events:auto;
+    z-index:2;
+  }
+  .slide-img{
+    height:55%;
+    width:100%;
+    background:#0b1120;
+    overflow:hidden;
+    flex-shrink:0;
+  }
+  .slide-img img{width:100%; height:100%; object-fit:cover; display:block;}
+  .slide-body{
+    flex:1;
+    padding:clamp(10px,1.8vh,18px) clamp(16px,2.6vw,26px);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:5px;
+    min-height:0;
+  }
+  .slide-body h3{
+    font-size:clamp(0.95rem,2vh,1.2rem);
+    font-weight:700;
+  }
+  .slide-body p{
+    font-size:clamp(0.68rem,1.4vh,0.82rem);
+    color:var(--text-dim);
+    line-height:1.4;
+    display:-webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+  }
+  .tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    margin-top:4px;
   }
   .tag{
-    background:rgba(57,255,143,0.08);
-    border:1px solid rgba(57,255,143,0.25);
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.62rem;
+    padding:3px 9px;
+    border-radius:999px;
+    background:rgba(56,189,248,0.09);
+    border:1px solid rgba(56,189,248,0.3);
     color:var(--accent);
   }
-  .img-slot{
-    background:
-      linear-gradient(135deg, rgba(57,255,143,0.03) 25%, transparent 25%) -10px 0,
-      linear-gradient(225deg, rgba(57,255,143,0.03) 25%, transparent 25%) -10px 0,
-      linear-gradient(315deg, rgba(57,255,143,0.03) 25%, transparent 25%),
-      linear-gradient(45deg, rgba(57,255,143,0.03) 25%, transparent 25%);
-    background-size:20px 20px;
-    background-color:#0d1310;
+
+  .dots{
+    display:flex;
+    justify-content:center;
+    gap:7px;
+    margin-top:6px;
+    flex-shrink:0;
   }
-  .glow-text{text-shadow:0 0 20px rgba(57,255,143,0.35)}
-  .btn{
-    transition:all .2s ease;
+  .dot{
+    width:7px; height:7px;
+    border-radius:50%;
+    background:var(--border);
+    cursor:pointer;
+    transition:all .25s ease;
   }
-  .btn:hover{
-    transform:translateY(-2px);
-    box-shadow:0 8px 20px -8px rgba(57,255,143,0.4);
+  .dot.active{
+    background:var(--accent);
+    width:20px;
+    border-radius:4px;
+    box-shadow:0 0 10px rgba(56,189,248,0.6);
   }
-  ::selection{background:var(--accent);color:#0a0e0d}
+
+  /* FOOTER */
+  footer{
+    flex-shrink:0;
+    text-align:center;
+    width:100%;
+  }
+  .socials{
+    display:flex;
+    justify-content:center;
+    gap:14px;
+    margin-bottom:6px;
+  }
+  .social-btn{
+    width:38px; height:38px;
+    border-radius:50%;
+    border:1px solid var(--border);
+    background:rgba(255,255,255,0.03);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--text-dim);
+    font-size:0.95rem;
+    text-decoration:none;
+    transition:all .22s cubic-bezier(.34,1.56,.64,1);
+  }
+  .social-btn:hover{
+    color:#fff;
+    transform:scale(1.18) translateY(-3px);
+    border-color:var(--accent);
+    background:linear-gradient(135deg, var(--accent), var(--accent-2));
+    box-shadow:0 8px 20px -6px rgba(56,189,248,0.5);
+  }
+  .copyright{
+    font-size:0.62rem;
+    color:var(--text-dim);
+    font-family:'JetBrains Mono',monospace;
+    letter-spacing:0.03em;
+  }
+
+  @media (max-height: 700px){
+    .bio{display:none;}
+  }
 </style>
 </head>
-<body class="min-h-screen">
+<body>
 
-  <!-- HEADER -->
-  <header class="max-w-3xl mx-auto px-6 pt-16 pb-10 text-center">
-    <div class="inline-block mb-5">
-      <div class="w-24 h-24 rounded-full border-2 border-[var(--accent)] mx-auto overflow-hidden bg-[var(--bg-card)]">
-        <img src="imagens/perfil.jpeg" alt="Augusto Oliveira" class="w-full h-full object-cover" />
-      </div>
+  <header>
+    <div class="avatar">
+      <img src="imagens/perfil.jpeg" alt="Augusto Oliveira" />
     </div>
-    <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight glow-text">Augusto Oliveira</h1>
-    <p class="mono text-[var(--accent)] mt-2 text-sm md:text-base">
-      &gt; Técnico em Redes | Suporte N1/N2 | Infraestrutura de TI
-    </p>
-    <p class="text-[var(--text-dim)] text-xs md:text-sm mono mt-1">CRU · SESPA · SAMU</p>
-    <p class="text-[var(--text-dim)] max-w-xl mx-auto mt-5 text-sm md:text-base leading-relaxed">
-      Administração de servidores Linux/Windows, monitoramento de infraestrutura crítica
-      (Zabbix/Grafana) e suporte técnico N1/N2 para o setor público de saúde.
-      Em evolução com automação (N8N, Python) e Inteligência Artificial aplicada à TI.
+    <h1>Augusto Oliveira</h1>
+    <p class="role">Técnico em Redes · Suporte N1/N2 · Infraestrutura de TI</p>
+    <p class="org">CRU &middot; SESPA &middot; SAMU</p>
+    <p class="bio">
+      Administração de servidores Linux/Windows, monitoramento de infraestrutura crítica (Zabbix/Grafana)
+      e automação (N8N, Python) aplicada ao setor público de saúde.
     </p>
   </header>
 
-  <!-- PROJETOS -->
-  <main class="max-w-5xl mx-auto px-6 pb-20">
-    <h2 class="mono text-[var(--accent)] text-sm mb-6 tracking-widest">// PROJETOS</h2>
+  <div class="carousel-wrap">
+    <button class="nav-btn" id="prevBtn" aria-label="Anterior"><i class="fa-solid fa-chevron-left"></i></button>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-      <!-- Projeto 1 -->
-      <div class="card rounded-xl overflow-hidden flex flex-col">
-        <div class="img-slot h-44 relative overflow-hidden">
-          <img src="imagens/grafana.jpeg" alt="Painel Grafana" class="w-full h-full object-cover" />
-        </div>
-        <div class="p-5 flex flex-col flex-1">
-          <h3 class="font-bold text-lg mb-2">Monitoramento Crítico</h3>
-          <p class="text-[var(--text-dim)] text-sm leading-relaxed mb-4 flex-1">
-            Implantação e gestão de monitoramento de servidores, redes e serviços críticos
-            em tempo real, com alertas proativos e dashboards de disponibilidade.
-          </p>
-          <div class="flex flex-wrap gap-2">
-            <span class="tag mono text-xs px-2 py-1 rounded">Zabbix</span>
-            <span class="tag mono text-xs px-2 py-1 rounded">Grafana</span>
-            <span class="tag mono text-xs px-2 py-1 rounded">Monitoramento</span>
+    <div class="stage" id="stage">
+      <div class="slide active">
+        <div class="slide-img"><img src="imagens/grafana.jpeg" alt="Monitoramento Crítico"></div>
+        <div class="slide-body">
+          <h3>Monitoramento Crítico</h3>
+          <p>Implantação e gestão de monitoramento de servidores, redes e serviços críticos em tempo real, com alertas proativos e dashboards de disponibilidade.</p>
+          <div class="tags">
+            <span class="tag">Zabbix</span><span class="tag">Grafana</span><span class="tag">Monitoramento</span>
           </div>
         </div>
       </div>
 
-      <!-- Projeto 2 -->
-      <div class="card rounded-xl overflow-hidden flex flex-col">
-        <div class="img-slot h-44 relative overflow-hidden">
-          <img src="imagens/GPS.jpeg" alt="Rastreamento GPS" class="w-full h-full object-cover" />
-        </div>
-        <div class="p-5 flex flex-col flex-1">
-          <h3 class="font-bold text-lg mb-2">Rastreamento e Frota</h3>
-          <p class="text-[var(--text-dim)] text-sm leading-relaxed mb-4 flex-1">
-            Gestão da plataforma de rastreamento veicular da frota do SAMU, garantindo
-            localização em tempo real e suporte às equipes de emergência.
-          </p>
-          <div class="flex flex-wrap gap-2">
-            <span class="tag mono text-xs px-2 py-1 rounded">Traccar</span>
-            <span class="tag mono text-xs px-2 py-1 rounded">GPS</span>
-            <span class="tag mono text-xs px-2 py-1 rounded">SAMU</span>
+      <div class="slide">
+        <div class="slide-img"><img src="imagens/GPS.jpeg" alt="Rastreamento e Frota"></div>
+        <div class="slide-body">
+          <h3>Rastreamento e Frota</h3>
+          <p>Gestão da plataforma de rastreamento veicular da frota do SAMU, garantindo localização em tempo real e suporte às equipes de emergência.</p>
+          <div class="tags">
+            <span class="tag">Traccar</span><span class="tag">GPS</span><span class="tag">SAMU</span>
           </div>
         </div>
       </div>
 
-      <!-- Projeto 3 -->
-      <div class="card rounded-xl overflow-hidden flex flex-col">
-        <div class="img-slot h-44 relative overflow-hidden p-3">
-          <svg viewBox="0 0 300 150" class="w-full h-full">
-            <rect x="0" y="0" width="300" height="150" fill="#0d1310"/>
-            <text x="8" y="16" class="mono" font-size="8" fill="#39ff8f" opacity="0.7">e-SUS SAMU · TFD</text>
-            <rect x="15" y="30" width="270" height="18" rx="3" fill="#111815" stroke="#1f2b26"/>
-            <rect x="15" y="30" width="270" height="18" rx="3" fill="#39ff8f" opacity="0.06"/>
-            <circle cx="27" cy="39" r="4" fill="#39ff8f"/>
-            <rect x="15" y="55" width="270" height="18" rx="3" fill="#111815" stroke="#1f2b26"/>
-            <circle cx="27" cy="64" r="4" fill="#39ff8f" opacity="0.5"/>
-            <rect x="15" y="80" width="270" height="18" rx="3" fill="#111815" stroke="#1f2b26"/>
-            <circle cx="27" cy="89" r="4" fill="#8fa39a"/>
-            <path d="M120 33 l4 4 8 -8" stroke="#39ff8f" stroke-width="2" fill="none" transform="translate(0,0)"/>
-            <text x="45" y="43" class="mono" font-size="6.5" fill="#e6efe9">Regulação médica ativa</text>
-            <text x="45" y="68" class="mono" font-size="6.5" fill="#8fa39a">Encaminhamento TFD #4821</text>
-            <text x="45" y="93" class="mono" font-size="6.5" fill="#8fa39a">Ficha paciente sincronizada</text>
-          </svg>
+      <div class="slide">
+        <div class="slide-img" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#0b1120,#111a2e);">
+          <i class="fa-solid fa-notes-medical" style="font-size:2.6rem;color:var(--accent);opacity:0.5;"></i>
         </div>
-        <div class="p-5 flex flex-col flex-1">
-          <h3 class="font-bold text-lg mb-2">Ecossistema de Saúde</h3>
-          <p class="text-[var(--text-dim)] text-sm leading-relaxed mb-4 flex-1">
-            Suporte técnico e administração dos sistemas e-SUS SAMU e do Sistema de
-            Tratamento Fora de Domicílio (TFD), assegurando continuidade do atendimento.
-          </p>
-          <div class="flex flex-wrap gap-2">
-            <span class="tag mono text-xs px-2 py-1 rounded">e-SUS</span>
-            <span class="tag mono text-xs px-2 py-1 rounded">TFD</span>
-            <span class="tag mono text-xs px-2 py-1 rounded">Saúde Pública</span>
+        <div class="slide-body">
+          <h3>Ecossistema de Saúde</h3>
+          <p>Suporte técnico e administração dos sistemas e-SUS SAMU e do Sistema de Tratamento Fora de Domicílio (TFD), assegurando continuidade do atendimento.</p>
+          <div class="tags">
+            <span class="tag">e-SUS</span><span class="tag">TFD</span><span class="tag">Saúde Pública</span>
           </div>
         </div>
       </div>
 
-      <!-- Projeto 4 -->
-      <div class="card rounded-xl overflow-hidden flex flex-col">
-        <div class="img-slot h-44 relative overflow-hidden p-3">
-          <svg viewBox="0 0 300 150" class="w-full h-full">
-            <rect x="0" y="0" width="300" height="150" fill="#0d1310"/>
-            <text x="8" y="16" class="mono" font-size="8" fill="#39ff8f" opacity="0.7">TRUENAS · GLPI · REDES</text>
-            <g stroke="#1f2b26" stroke-width="1">
-              <rect x="20" y="30" width="260" height="16" rx="2" fill="#111815"/>
-              <rect x="20" y="52" width="260" height="16" rx="2" fill="#111815"/>
-              <rect x="20" y="74" width="260" height="16" rx="2" fill="#111815"/>
-            </g>
-            <circle cx="32" cy="38" r="3" fill="#39ff8f"/>
-            <circle cx="32" cy="60" r="3" fill="#39ff8f"/>
-            <circle cx="32" cy="82" r="3" fill="#39ff8f" opacity="0.4"/>
-            <rect x="230" y="32" width="40" height="12" rx="2" fill="#39ff8f" opacity="0.1" stroke="#39ff8f" stroke-width="0.5"/>
-            <text x="236" y="41" class="mono" font-size="6" fill="#39ff8f">ONLINE</text>
-            <line x1="150" y1="98" x2="150" y2="112" stroke="#1f2b26"/>
-            <line x1="80" y1="112" x2="220" y2="112" stroke="#1f2b26"/>
-            <circle cx="80" cy="122" r="6" fill="none" stroke="#39ff8f" stroke-width="1"/>
-            <circle cx="150" cy="122" r="6" fill="none" stroke="#39ff8f" stroke-width="1"/>
-            <circle cx="220" cy="122" r="6" fill="none" stroke="#39ff8f" stroke-width="1"/>
-            <line x1="80" y1="118" x2="80" y2="112" stroke="#1f2b26"/>
-            <line x1="220" y1="118" x2="220" y2="112" stroke="#1f2b26"/>
-          </svg>
+      <div class="slide">
+        <div class="slide-img" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#0b1120,#111a2e);">
+          <i class="fa-solid fa-server" style="font-size:2.6rem;color:var(--accent);opacity:0.5;"></i>
         </div>
-        <div class="p-5 flex flex-col flex-1">
-          <h3 class="font-bold text-lg mb-2">Infraestrutura &amp; Redes</h3>
-          <p class="text-[var(--text-dim)] text-sm leading-relaxed mb-4 flex-1">
-            Administração de storage e backups em TrueNAS, gestão de chamados via GLPI
-            e configuração de redes corporativas na SESPA e SAMU.
-          </p>
-          <div class="flex flex-wrap gap-2">
-            <span class="tag mono text-xs px-2 py-1 rounded">TrueNAS</span>
-            <span class="tag mono text-xs px-2 py-1 rounded">GLPI</span>
-            <span class="tag mono text-xs px-2 py-1 rounded">Redes</span>
+        <div class="slide-body">
+          <h3>Infraestrutura &amp; Redes</h3>
+          <p>Administração de storage e backups em TrueNAS, gestão de chamados via GLPI e configuração de redes corporativas na SESPA e SAMU.</p>
+          <div class="tags">
+            <span class="tag">TrueNAS</span><span class="tag">GLPI</span><span class="tag">Redes</span>
           </div>
         </div>
       </div>
 
-      <!-- Projeto 5 -->
-      <div class="card rounded-xl overflow-hidden flex flex-col md:col-span-2">
-        <div class="img-slot h-44 relative overflow-hidden p-3">
-          <svg viewBox="0 0 600 150" class="w-full h-full">
-            <rect x="0" y="0" width="600" height="150" fill="#0d1310"/>
-            <text x="10" y="18" class="mono" font-size="9" fill="#39ff8f" opacity="0.7">INTRANET CRU · AUTOMAÇÃO N8N/PYTHON</text>
-            <g stroke="#39ff8f" stroke-width="1" fill="none" opacity="0.8">
-              <rect x="30" y="45" width="70" height="30" rx="4"/>
-              <rect x="160" y="45" width="70" height="30" rx="4"/>
-              <rect x="290" y="45" width="70" height="30" rx="4"/>
-              <rect x="420" y="45" width="70" height="30" rx="4"/>
-              <line x1="100" y1="60" x2="160" y2="60" stroke-dasharray="3,2"/>
-              <line x1="230" y1="60" x2="290" y2="60" stroke-dasharray="3,2"/>
-              <line x1="360" y1="60" x2="420" y2="60" stroke-dasharray="3,2"/>
-            </g>
-            <circle cx="100" cy="60" r="2.5" fill="#39ff8f"/>
-            <circle cx="230" cy="60" r="2.5" fill="#39ff8f"/>
-            <circle cx="360" cy="60" r="2.5" fill="#39ff8f"/>
-            <text x="65" y="63" text-anchor="middle" class="mono" font-size="7" fill="#e6efe9">Entrada</text>
-            <text x="195" y="63" text-anchor="middle" class="mono" font-size="7" fill="#e6efe9">Processo</text>
-            <text x="325" y="63" text-anchor="middle" class="mono" font-size="7" fill="#e6efe9">Validação</text>
-            <text x="455" y="63" text-anchor="middle" class="mono" font-size="7" fill="#e6efe9">Financeiro</text>
-            <rect x="30" y="95" width="460" height="10" rx="5" fill="#111815" stroke="#1f2b26"/>
-            <rect x="30" y="95" width="330" height="10" rx="5" fill="#39ff8f" opacity="0.5"/>
-            <text x="500" y="103" class="mono" font-size="7" fill="#39ff8f">72%</text>
-          </svg>
+      <div class="slide">
+        <div class="slide-img" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#0b1120,#111a2e);">
+          <i class="fa-solid fa-diagram-project" style="font-size:2.6rem;color:var(--accent);opacity:0.5;"></i>
         </div>
-        <div class="p-5 flex flex-col flex-1">
-          <h3 class="font-bold text-lg mb-2">Sistemas &amp; Automação</h3>
-          <p class="text-[var(--text-dim)] text-sm leading-relaxed mb-4 flex-1">
-            Desenvolvimento e manutenção da intranet do CRU e de sistema de gestão
-            financeira para A&amp;A, automatizando processos internos e reduzindo trabalho manual.
-          </p>
-          <div class="flex flex-wrap gap-2">
-            <span class="tag mono text-xs px-2 py-1 rounded">Intranet</span>
-            <span class="tag mono text-xs px-2 py-1 rounded">Automação</span>
-            <span class="tag mono text-xs px-2 py-1 rounded">Gestão Financeira</span>
+        <div class="slide-body">
+          <h3>Sistemas &amp; Automação</h3>
+          <p>Desenvolvimento e manutenção da intranet do CRU e de sistema de gestão financeira, automatizando processos internos com N8N e Python.</p>
+          <div class="tags">
+            <span class="tag">Intranet</span><span class="tag">Automação</span><span class="tag">N8N</span>
           </div>
         </div>
       </div>
-
     </div>
-  </main>
 
-  <!-- FOOTER -->
-  <footer class="max-w-3xl mx-auto px-6 pb-16 text-center">
-    <h2 class="mono text-[var(--accent)] text-sm mb-6 tracking-widest">// CONTATO</h2>
-    <div class="flex flex-wrap justify-center gap-4 mb-8">
-      <a href="https://wa.me/5593984321003" target="_blank" rel="noopener"
-         class="btn mono text-sm px-5 py-3 rounded-lg border border-[var(--border)] bg-[var(--bg-card)] hover:border-[var(--accent)] text-[var(--text)]">
-        WhatsApp
-      </a>
-      <a href="https://www.linkedin.com/in/augustoficial/" target="_blank" rel="noopener"
-         class="btn mono text-sm px-5 py-3 rounded-lg border border-[var(--border)] bg-[var(--bg-card)] hover:border-[var(--accent)] text-[var(--text)]">
-        LinkedIn
-      </a>
-      <a href="mailto:augusto.corporativo@live.com"
-         class="btn mono text-sm px-5 py-3 rounded-lg border border-[var(--border)] bg-[var(--bg-card)] hover:border-[var(--accent)] text-[var(--text)]">
-        E-mail
-      </a>
-      <a href="https://github.com/augustostm" target="_blank" rel="noopener"
-         class="btn mono text-sm px-5 py-3 rounded-lg border border-[var(--border)] bg-[var(--bg-card)] hover:border-[var(--accent)] text-[var(--text)]">
-        GitHub
-      </a>
+    <button class="nav-btn" id="nextBtn" aria-label="Próximo"><i class="fa-solid fa-chevron-right"></i></button>
+  </div>
+
+  <div class="dots" id="dots"></div>
+
+  <footer>
+    <div class="socials">
+      <a class="social-btn" href="https://wa.me/5593984321003" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+      <a class="social-btn" href="https://github.com/augustostm" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+      <a class="social-btn" href="https://www.linkedin.com/in/augustoficial/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a class="social-btn" href="mailto:augusto.corporativo@live.com" aria-label="E-mail"><i class="fa-solid fa-envelope"></i></a>
+      <a class="social-btn" href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
     </div>
-    <p class="text-[var(--text-dim)] text-xs mono">
-      Augusto Oliveira © 2026 — Infraestrutura de TI &amp; Redes
-    </p>
+    <p class="copyright">Augusto Oliveira &copy; 2026 — Infraestrutura de TI &amp; Redes</p>
   </footer>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const dotsWrap = document.getElementById('dots');
+  let current = 0;
+  let timer;
+
+  slides.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(d);
+  });
+  const dots = document.querySelectorAll('.dot');
+
+  function goTo(index){
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (index + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+    resetTimer();
+  }
+
+  function next(){ goTo(current + 1); }
+  function prev(){ goTo(current - 1); }
+
+  function resetTimer(){
+    clearInterval(timer);
+    timer = setInterval(next, 4500);
+  }
+
+  document.getElementById('nextBtn').addEventListener('click', next);
+  document.getElementById('prevBtn').addEventListener('click', prev);
+
+  resetTimer();
+</script>
 
 </body>
 </html>
