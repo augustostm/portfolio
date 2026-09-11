@@ -67,9 +67,8 @@
   <!-- HEADER -->
   <header class="max-w-3xl mx-auto px-6 pt-16 pb-10 text-center">
     <div class="inline-block mb-5">
-      <div class="w-24 h-24 rounded-full border-2 border-[var(--accent)] mx-auto flex items-center justify-center bg-[var(--bg-card)] mono text-2xl font-bold text-[var(--accent)] glow-text">
-        AO
-        <!-- Substitua por: <img src="SEU_LINK_DE_FOTO" class="w-full h-full rounded-full object-cover" /> -->
+      <div class="w-24 h-24 rounded-full border-2 border-[var(--accent)] mx-auto overflow-hidden bg-[var(--bg-card)]">
+        <img src="imagens/perfil.jpeg" alt="Augusto Oliveira" class="w-full h-full object-cover" />
       </div>
     </div>
     <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight glow-text">Augusto Oliveira</h1>
@@ -92,17 +91,8 @@
 
       <!-- Projeto 1 -->
       <div class="card rounded-xl overflow-hidden flex flex-col">
-        <div class="img-slot h-44 relative overflow-hidden p-3">
-          <svg viewBox="0 0 300 150" class="w-full h-full">
-            <rect x="0" y="0" width="300" height="150" fill="#0d1310"/>
-            <text x="8" y="16" class="mono" font-size="8" fill="#39ff8f" opacity="0.7">ZABBIX · GRAFANA</text>
-            <polyline points="10,110 40,95 60,105 90,70 120,90 150,50 180,75 210,40 240,60 270,30 290,45" fill="none" stroke="#39ff8f" stroke-width="2" opacity="0.9"/>
-            <polyline points="10,130 40,120 60,125 90,110 120,118 150,100 180,112 210,95 240,105 270,90 290,98" fill="none" stroke="#1e7a4c" stroke-width="1.5" opacity="0.7"/>
-            <circle cx="270" cy="30" r="3" fill="#39ff8f"/>
-            <rect x="10" y="10" width="6" height="6" fill="#39ff8f" opacity="0.6"/>
-            <rect x="200" y="15" width="50" height="14" rx="2" fill="#39ff8f" opacity="0.12" stroke="#39ff8f" stroke-width="0.5"/>
-            <text x="205" y="25" class="mono" font-size="7" fill="#39ff8f">UP 99.9%</text>
-          </svg>
+        <div class="img-slot h-44 relative overflow-hidden">
+          <img src="imagens/grafana.jpeg" alt="Painel Grafana" class="w-full h-full object-cover" />
         </div>
         <div class="p-5 flex flex-col flex-1">
           <h3 class="font-bold text-lg mb-2">Monitoramento Crítico</h3>
@@ -120,21 +110,8 @@
 
       <!-- Projeto 2 -->
       <div class="card rounded-xl overflow-hidden flex flex-col">
-        <div class="img-slot h-44 relative overflow-hidden p-3">
-          <svg viewBox="0 0 300 150" class="w-full h-full">
-            <rect x="0" y="0" width="300" height="150" fill="#0d1310"/>
-            <text x="8" y="16" class="mono" font-size="8" fill="#39ff8f" opacity="0.7">TRACCAR · GPS</text>
-            <g opacity="0.25" stroke="#39ff8f" stroke-width="0.5">
-              <path d="M0,30 L300,30 M0,60 L300,60 M0,90 L300,90 M0,120 L300,120"/>
-              <path d="M50,0 L50,150 M100,0 L100,150 M150,0 L150,150 M200,0 L200,150 M250,0 L250,150"/>
-            </g>
-            <path d="M40,120 Q90,60 150,80 T260,40" fill="none" stroke="#39ff8f" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/>
-            <circle cx="40" cy="120" r="5" fill="#1e7a4c"/>
-            <circle cx="150" cy="80" r="5" fill="#39ff8f" opacity="0.6"/>
-            <circle cx="260" cy="40" r="6" fill="#39ff8f"/>
-            <circle cx="260" cy="40" r="10" fill="none" stroke="#39ff8f" stroke-width="1" opacity="0.5"/>
-            <text x="265" y="38" class="mono" font-size="6" fill="#e6efe9">UNID-07</text>
-          </svg>
+        <div class="img-slot h-44 relative overflow-hidden">
+          <img src="imagens/GPS.jpeg" alt="Rastreamento GPS" class="w-full h-full object-cover" />
         </div>
         <div class="p-5 flex flex-col flex-1">
           <h3 class="font-bold text-lg mb-2">Rastreamento e Frota</h3>
