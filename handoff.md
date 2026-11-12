@@ -1,0 +1,3 @@
+- Feito: +2 slides (Radar Tapajós, Égua do KM); frota usa "dashboard painel.png" (GPS.jpeg removido); texto e-SUS atualizado; commit + push.
+- Pendente: confirmar deploy em https://utistm.tech/
+- Próximo passo: validar visual no navegador (7 slides no carrossel).
